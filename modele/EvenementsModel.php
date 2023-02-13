@@ -1,7 +1,7 @@
 <?php
 // namespace modele\EnvenementsModel;
 use  \modele\Model  as  Model;
-require_once ('Model.php');
+require_once ('model.php');
 
 class EvenementsModel extends Model{
     

@@ -16,7 +16,6 @@
 
 <body>
     <h1>Evenements à venir</h1>
-  <div><a href="../controleur/FrontControleur.php?action=addEvent">Ajouter un evenement</a></div>
 
 
     <!-- Button -->

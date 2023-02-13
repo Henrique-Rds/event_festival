@@ -1,0 +1,14 @@
+body{
+
+    margin: 0;
+    padding: 0;
+}
+
+.btn-form {
+    display: flex ;
+    width: 100%;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    margin-top: 15px;
+}

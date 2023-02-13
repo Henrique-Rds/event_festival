@@ -46,7 +46,7 @@ abstract class Model{
         $query = $this->connection->prepare($sql);
         $query->execute([$this->table]);
         $result = $query->fetchAll();
-        return $result;    
+        return $result;
     }
 
     /**

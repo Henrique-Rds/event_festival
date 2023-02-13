@@ -2,9 +2,11 @@
 // Auto chargement des classes utilisées
 require_once("../Autoloader.php");
 require_once("../modele/EvenementsModel.php");
+require_once("../modele/artisteModel.php");
 require_once(__DIR__.'/../Constantes.php');
 
 session_start();
+
 
 if (isset($_GET['action']))
     
@@ -41,7 +43,9 @@ switch ($requested_page) {
     case 'artistes':
         try {
             
-            //$modeleEvenement = new modele\EnvenementsModel\EvenementsModel();
+            //$modeleEvenement = new modele\ArtisteModel\ArtisteModel();
+            $artisteModel = new ArtisteModel();
+            $_SESSION["Artistes"] = $artisteModel->getAll();
             
         }
         // Problème : exemple -> Impossible de se connecter à la BD
@@ -58,24 +62,5 @@ switch ($requested_page) {
         header("Location: ../vue/Artistes.php");
     break;
 
-    case 'addEvent':
-        try {
-            
-            //$modeleEvenement = new modele\EnvenementsModel\EvenementsModel();
-            
-        }
-        // Problème : exemple -> Impossible de se connecter à la BD
-        catch (\Exception $e) {
-            $_SESSION['message'] = "Problème technique."; 
-            // Retourner la page login.php
-            header('Location: ../vue/accueil.php');
-        }
-
-        // // Positionner le tableau en variable de session 
-        // $_SESSION['tableau'] = $tab_evenements;
-
-        // Retourner la page Evenement.php : page d'Evenement de l'application
-        header("Location: ../vue/addEvent.php");
-    break;
 }
 ?>
