@@ -5,7 +5,6 @@ abstract class Model{
 
     // Propriétés permettant de personnaliser les requêtes
     public $table;
-    public $id;
     private $connection;
 
      /**
@@ -26,13 +25,13 @@ abstract class Model{
     /**
      * Méthode permettant d'obtenir un enregistrement de la table choisie en fonction d'un id
      *
-     * @return void
+     * return un objet
      */
-    public function getOne(){
-        $sql = "SELECT * FROM ".$this->table." WHERE id=".$this->id;
+    public function getOne($id){
+        $sql = "SELECT * FROM ? WHERE ? ";
         $query = $this->connection->prepare($sql);
-        $query->execute();
-        return $query->fetch();    
+        $query->execute([$this->table,$id]);
+        return $query->fetch();     
     }
 
      
@@ -40,23 +39,25 @@ abstract class Model{
     /**
      * Méthode permettant d'obtenir tous les enregistrements de la table choisie
      *
-     * @return void
+     * return liste d'objets
      */
     public function getAll(){
-        $sql = "SELECT * FROM ".$this->table;
+        $sql = "SELECT * FROM ?";
         $query = $this->connection->prepare($sql);
-        $query->execute();
+        $query->execute([$this->table]);
         $result = $query->fetchAll();
         return $result;    
     }
 
-    /*
-    *
-    */
-    public function deleteOne(){
-        $sql = "DELETE FROM ".$this->table." WHERE id=".$this->id;
+    /**
+     * Méthode permettant supprimer l'enregistrement de la table choisie
+     *
+     * retourne void
+     */
+    public function deleteOne($id){
+        $sql = "DELETE FROM ? WHERE id= ?";
         $query = $this->connection->prepare($sql);
-        $query->execute();
+        $query->execute([$this->table,$id]);
  
     }
 }

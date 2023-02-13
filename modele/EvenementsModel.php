@@ -16,69 +16,33 @@ class EvenementsModel extends Model{
     }
 
     public function createEvenement($nomEvent,$dateEvent,$eventPlaceDispo) {
-        $sql = "INSERT INTO "
-        .$this->table."
-        (Id_Evenements , evenements_nom , evenements_date , evenements_place_dispo)
-        VALUES (NULL ,'$nomEvent' , '$dateEvent' , '$eventPlaceDispo')" ;
+        $sql = "INSERT INTO ?
+        (Id_Evenements , evenements_nom , evenements_date , evenement_duree, lieu, evenements_place_dispo)
+        VALUES (NULL , ? , ? , ?, ?, ?)" ;
         $query = $this->$connection->prepare($sql);
         try{
-            $query->execute();
+            $query->execute([$this->table,$nom,$date,$duree,$lieu,$placeDispo]);
         }catch (\Exception $e) {
             throw new \Exception('Problème lors du create');
         }
     }
 
-    public function updateEvenementPlace($nbPlaces) {
-        $sql = "UPDATE ".$this->table." 
-        SET evenements_place_dispo=".$nbPlaces." 
-        WHERE Id_Evenements = ".$this->id ; 
+    public function updateEvenement($nom,$placeDispo,$date,$duree,$lieu,$id) {
+        $sql = "UPDATE ?
+        SET evenements_nom = ? , evenements_date= ? ,
+        evenements_duree = ?, lieu = ? , evenements_place_dispo = ?
+        WHERE Id_Evenements = ? "; 
         $query = $this->$connection->prepare($sql);
         try{
-            $query->execute();
+            $query->execute([$this->table,$nom,$date,$duree,$lieu,$placeDispo,$id]);
         }catch (\Exception $e) {
-            throw new \Exception('Problème lors de l update de evenement nb places');
+            throw new \Exception('Problème lors de l update de evenement');
         }
         
     }
 
-    public function updateEvenementNom($nom) {
-        $sql = "UPDATE ".$this->table." 
-        SET evenements_nom=".$nom." 
-        WHERE Id_Evenements = ".$this->id ; 
-        $query = $this->$connection->prepare($sql);
-        try{
-            $query->execute();
-        }catch (\Exception $e) {
-            throw new \Exception('Problème lors de l update de evenement nom');
-        }
-        
-    }
 
-    public function updateEvenementDuree($duree) {
-        $sql = "UPDATE ".$this->table." 
-        SET evenements_duree=".$duree." 
-        WHERE Id_Evenements = ".$this->id ; 
-        $query = $this->$connection->prepare($sql);
-        try{
-            $query->execute();
-        }catch (\Exception $e) {
-            throw new \Exception('Problème lors de l update de evenement duree');
-        }
-        
-    }
 
-    public function updateEvenementDate($date) {
-        $sql = "UPDATE ".$this->table." 
-        SET evenements_date=".$date." 
-        WHERE Id_Evenements = ".$this->id ; 
-        $query = $this->$connection->prepare($sql);
-        try{
-            $query->execute();
-        }catch (\Exception $e) {
-            throw new \Exception('Problème lors de l update de evenement duree');
-        }
-        
-    }
 
 
 }
