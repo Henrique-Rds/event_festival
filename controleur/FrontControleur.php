@@ -25,8 +25,7 @@ switch ($requested_page) {
             
             //$modeleEvenement = new modele\EnvenementsModel\EvenementsModel();
             $modeleEvenement = new EvenementsModel();
-            $tab_evenements = $modeleEvenement->getAll();
-            $_SESSION['tableau'] = $tab_evenements;
+            $_SESSION["Evenements"] = $modeleEvenement->getAll();
         }
         // Problème : exemple -> Impossible de se connecter à la BD
         catch (\Exception $e) {
@@ -34,9 +33,6 @@ switch ($requested_page) {
             // Retourner la page login.php
             header('Location: ../vue/accueil.php');
         }
-
-        // // Positionner le tableau en variable de session 
-        // $_SESSION['tableau'] = $tab_evenements;
 
         // Retourner la page Evenement.php : page d'Evenement de l'application
         header("Location: ../vue/Evenement.php");

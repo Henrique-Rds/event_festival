@@ -1,4 +1,7 @@
 <!doctype html>
+<?php
+    session_start();
+?>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -13,7 +16,10 @@
   <body>
     <h1>Evenements à venir</h1>
     <?php
-        echo $_SESSION['tableau']
+        foreach ($_SESSION["Evenements"] as $a) {
+          print_r ($a); 
+                            
+          }
     ?>
   </body>
 
