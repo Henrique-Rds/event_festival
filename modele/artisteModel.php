@@ -1,4 +1,7 @@
 <?php
+use  \modele\Model  as  Model;
+require_once ('Model.php');
+
 class artisteModel extends Model{
 
     // Propriétés permettant de personnaliser les requêtes

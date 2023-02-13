@@ -1,0 +1,19 @@
+body{
+
+    margin: 0;
+    padding: 0;
+}
+
+/* .modal{
+    display: block;
+    position: relative;
+} */
+
+.btn-form {
+    display: flex ;
+    width: 100%;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    margin-top: 15px;
+}
