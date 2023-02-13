@@ -15,12 +15,6 @@
 
   <body>
     <h1>Evenements à venir</h1>
-    <?php
-        foreach ($_SESSION["Evenements"] as $a) {
-          print_r ($a); 
-                            
-          }
-    ?>
 
   <table class="table">
           <thead class="thead-dark">
@@ -33,29 +27,21 @@
               </tr>
           </thead>
           <tbody>
-              <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Mark</td>
-              </tr>
-              <tr>
-
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Mark</td>
-              </tr>
-              <tr>
-
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Mark</td>
-              </tr>
+            <?php
+                foreach ($_SESSION["Evenements"] as $evenement) {
+                    ?>
+                    <tr>
+                        <td><?php print_r($evenement['evenements_nom']);?></td>
+                        <td><?php print_r($evenement['evenements_date']); ?></td>
+                        <td><?php print_r($evenement['evenements_duree']); ?></td>
+                        <td><?php print_r($evenement['lieu']); ?></td>
+                        <td><?php print_r($evenement['evenements_place_dispo']); ?></td>
+                    </tr>
+                    <?php
+                }
+            ?>
+              
+          
           </tbody>
       </table>
 
