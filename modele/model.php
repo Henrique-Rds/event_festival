@@ -28,9 +28,10 @@ abstract class Model{
      * return un objet
      */
     public function getOne($id){
-        $sql = "SELECT * FROM ? WHERE ? ";
+        $tables = htmlspecialchars($this->table);
+        $sql = "SELECT * FROM ".$tables." WHERE id =? ";
         $query = $this->connection->prepare($sql);
-        $query->execute([$this->table,$id]);
+        $query->execute([$id]);
         return $query->fetch();     
     }
 
@@ -42,9 +43,10 @@ abstract class Model{
      * return liste d'objets
      */
     public function getAll(){
-        $sql = "SELECT * FROM ?";
+        $tables = htmlspecialchars($this->table);
+        $sql = "SELECT * FROM ".$tables;
         $query = $this->connection->prepare($sql);
-        $query->execute([$this->table]);
+        $query->execute();
         $result = $query->fetchAll();
         return $result;
     }
@@ -55,9 +57,10 @@ abstract class Model{
      * retourne void
      */
     public function deleteOne($id){
-        $sql = "DELETE FROM ? WHERE id= ?";
+        $tables = htmlspecialchars($this->table);
+        $sql = "DELETE FROM ".$tables." WHERE id= ?";
         $query = $this->connection->prepare($sql);
-        $query->execute([$this->table,$id]);
+        $query->execute([$id]);
  
     }
 }

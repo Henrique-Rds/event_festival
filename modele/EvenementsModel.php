@@ -16,25 +16,27 @@ class EvenementsModel extends Model{
     }
 
     public function createEvenement($nomEvent,$dateEvent,$eventPlaceDispo) {
-        $sql = "INSERT INTO ?
+        $tables = htmlspecialchars($this->table);
+        $sql = "INSERT INTO ".$tables."
         (Id_Evenements , evenements_nom , evenements_date , evenement_duree, lieu, evenements_place_dispo)
         VALUES (NULL , ? , ? , ?, ?, ?)" ;
         $query = $this->$connection->prepare($sql);
         try{
-            $query->execute([$this->table,$nom,$date,$duree,$lieu,$placeDispo]);
+            $query->execute([$nom,$date,$duree,$lieu,$placeDispo]);
         }catch (\Exception $e) {
             throw new \Exception('Problème lors du create');
         }
     }
 
     public function updateEvenement($nom,$placeDispo,$date,$duree,$lieu,$id) {
-        $sql = "UPDATE ?
+        $tables = htmlspecialchars($this->table);
+        $sql = "UPDATE ".$tables."
         SET evenements_nom = ? , evenements_date= ? ,
         evenements_duree = ?, lieu = ? , evenements_place_dispo = ?
         WHERE Id_Evenements = ? "; 
         $query = $this->$connection->prepare($sql);
         try{
-            $query->execute([$this->table,$nom,$date,$duree,$lieu,$placeDispo,$id]);
+            $query->execute([$nom,$date,$duree,$lieu,$placeDispo,$id]);
         }catch (\Exception $e) {
             throw new \Exception('Problème lors de l update de evenement');
         }

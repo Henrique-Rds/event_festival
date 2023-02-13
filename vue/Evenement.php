@@ -73,6 +73,7 @@
           </thead>
           <tbody>
             <?php
+                var_dump($_SESSION);
                 foreach ($_SESSION["Evenements"] as $evenement) {
                     ?>
                     <tr>

@@ -14,6 +14,14 @@ if (isset($_GET['action']))
 else 
     // Retourner la page d'authentification
     $requested_page = 'accueil';
+if (isset( $_SESSION["Evenements"] ))
+    unset( $_SESSION["Evenements"] );
+
+if (isset( $_SESSION["Artistes"] ))
+    unset( $_SESSION["Artistes"] );
+
+if (isset( $_SESSION["message"] ))
+    unset( $_SESSION["message"] );
 
 switch ($requested_page) {
      // Afficher la page d'accueil
@@ -31,7 +39,7 @@ switch ($requested_page) {
         }
         // Problème : exemple -> Impossible de se connecter à la BD
         catch (\Exception $e) {
-            $_SESSION['message'] = "Problème technique."; 
+            $_SESSION['message'] = "Problème technique avec les events."; 
             // Retourner la page login.php
             header('Location: ../vue/accueil.php');
         }
@@ -55,8 +63,6 @@ switch ($requested_page) {
             header('Location: ../vue/accueil.php');
         }
 
-        // // Positionner le tableau en variable de session 
-        // $_SESSION['tableau'] = $tab_evenements;
 
         // Retourner la page Evenement.php : page d'Evenement de l'application
         header("Location: ../vue/Artistes.php");
