@@ -1,10 +1,12 @@
 <?php
+namespace modele;
+use modele\connectionFiles\Connexion as Connexion;
 abstract class Model{
 
     // Propriétés permettant de personnaliser les requêtes
     public $table;
     public $id;
-    private $Connection;
+    private $connection;
 
      /**
      * Fonction d'initialisation de la base de données
@@ -17,7 +19,7 @@ abstract class Model{
 
         // On essaie de se connecter à la base
         $hconnection = new Connexion();
-        $this->Connection = $hconnection->getConnection();
+        $this->connection = $hconnection->getConnection();
         
     }
 
@@ -28,7 +30,7 @@ abstract class Model{
      */
     public function getOne(){
         $sql = "SELECT * FROM ".$this->table." WHERE id=".$this->id;
-        $query = $this->$connection->prepare($sql);
+        $query = $this->connection->prepare($sql);
         $query->execute();
         return $query->fetch();    
     }
@@ -42,9 +44,11 @@ abstract class Model{
      */
     public function getAll(){
         $sql = "SELECT * FROM ".$this->table;
-        $query = $this->$connection->prepare($sql);
+        $query = $this->connection->prepare($sql);
         $query->execute();
-        return $query->fetchAll();    
+        $result = $query->fetchAll();
+        var_dump($result);
+        return $result;    
     }
 
     /*
@@ -52,9 +56,10 @@ abstract class Model{
     */
     public function deleteOne(){
         $sql = "DELETE FROM ".$this->table." WHERE id=".$this->id;
-        $query = $this->$connection->prepare($sql);
+        $query = $this->connection->prepare($sql);
         $query->execute();
-        return $query->fetch();  
+ 
     }
 }
+
 ?>

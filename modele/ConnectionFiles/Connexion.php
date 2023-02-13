@@ -1,5 +1,5 @@
 <?php
-namespace modele\dao;
+namespace modele\connectionFiles;
 
 class Connexion{
     private $driver;
@@ -17,12 +17,11 @@ class Connexion{
     }
 
     public function getConnection(){
-
         // Chaine de connexion
         $dsn = $this->driver.':host='.$this->host.';dbname='.$this->database.';charset='.$this->charset;
         //$dsn = ' mysql:host=localhost;dbname=db_test;charset=utf8';
 
-        try {
+        try { 
             // Obtenir une connexion à la BD
             // Si connexion impossible -> retourne un exception PDOException
             $connection = new \PDO($dsn, $this->user, $this->pass);
@@ -33,11 +32,13 @@ class Connexion{
 
             // Retourne la connexion
             return $connection;
+        
 
         // Si connexion à la BD impossible, l'exception PDOException est lancée
         } catch (\PDOException $e) {
             // Lancer une exception à la méthode appelante
             throw new \Exception('Impossible d\'établir la connexion à la BD.');
+            
         }
     }
 }

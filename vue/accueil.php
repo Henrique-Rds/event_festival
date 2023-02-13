@@ -11,6 +11,7 @@
 
   <body>
     <h1>Hello</h1>
+    <div><a href="../controleur/FrontControleur.php?action=evenement">Page Evenements</a></div>
   </body>
 
 </html>
