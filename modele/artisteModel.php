@@ -1,4 +1,5 @@
 <?php
+
 use  \modele\Model  as  Model;
 require_once ('model.php');
 
@@ -16,12 +17,14 @@ class ArtisteModel extends Model{
 
 
     public function createArtiste($artisteNom,$artisteNbMusique){
-        $sql = "INSERT INTO ?
-        (Id_Artistes,artiste_nom , artiste_nb_musique)
+        
+        $sql = "INSERT INTO ".$this->table."
+        (id, artiste_nom , artiste_nb_musique)
         VALUES (NULL, ? , ? )";
-        $query = $this->$connection->prepare($sql);
+        $query = $this->connection->prepare($sql);
+        var_dump($query);
         try{
-            $query->execute([$this->table,$artisteNom,$artisteNbMusique]);
+            $query->execute([$artisteNom,$artisteNbMusique]);
         }catch (\Exception $e) {
             throw new \Exception('Problème lors du create');
         } 
@@ -31,7 +34,7 @@ class ArtisteModel extends Model{
     //     $sql = "UPDATE ".$this->table." 
     //     SET artistes_nom=".$artisteNom." 
     //     WHERE Id_Artistes = ".$this->id ; 
-    //     $query = $this->$connection->prepare($sql);
+    //     $query = $this->connection->prepare($sql);
     //     try{
     //         $query->execute();
     //     }catch (\Exception $e) {
@@ -44,7 +47,7 @@ class ArtisteModel extends Model{
     //     $sql = "UPDATE ".$this->table." 
     //     SET artistes_nom=".$artisteNbMusique." 
     //     WHERE Id_Artistes = ".$this->id ; 
-    //     $query = $this->$connection->prepare($sql);
+    //     $query = $this->connection->prepare($sql);
     //     try{
     //         $query->execute();
     //     }catch (\Exception $e) {

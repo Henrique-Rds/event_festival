@@ -18,7 +18,7 @@
     <h1>Evenements à venir</h1>
 
 
-    <!-- Button -->
+  <!-- Button -->
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup-event">
       Ajouter
   </button>

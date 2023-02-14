@@ -68,5 +68,47 @@ switch ($requested_page) {
         header("Location: ../vue/Artistes.php");
     break;
 
+
+    case 'modifArtiste':
+        try {
+        }
+        // Problème : exemple -> Impossible de se connecter à la BD
+        catch (\Exception $e) {
+            $_SESSION['message'] = "Problème technique."; 
+            // Retourner la page login.php
+            header('Location: ../vue/accueil.php');
+        }
+
+
+        // Retourner la page Evenement.php : page d'Evenement de l'application
+        header("Location: ../vue/modifArtiste.php");
+    break;
+
+    case 'addArtiste':
+        try {
+            if (isset($_POST['nom_artiste']) && isset($_POST['nb_musiques'])) {
+                $nom_artiste = htmlspecialchars($_POST["nom_artiste"]);
+                $nb_musiques = htmlspecialchars((int)$_POST["nb_musiques"]);
+                $artisteModel = new ArtisteModel();
+                $artisteModel->createArtiste($nom_artiste,$nb_musiques);
+
+                header("Location: ../controleur/FrontControleur.php?action=artistes");
+            } else {    
+                echo "N0, mail is not set";
+                header('Location: ../vue/accueil.php');
+            }
+        }
+        // Problème : exemple -> Impossible de se connecter à la BD
+        catch (\Exception $e) {
+            $_SESSION['message'] = "Problème technique."; 
+            // Retourner la page login.php
+            // header('Location: ../vue/accueil.php');
+        }
+
+
+        // Retourner la page Evenement.php : page d'Evenement de l'application
+        header("Location: ../vue/addArtiste.php");
+    break;
+
 }
 ?>
