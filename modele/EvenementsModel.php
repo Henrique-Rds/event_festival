@@ -16,10 +16,9 @@ class EvenementsModel extends Model{
     }
 
     public function createEvenement($nomEvent,$dateEvent,$eventPlaceDispo) {
-        $tables = htmlspecialchars($this->table);
-        $sql = "INSERT INTO ".$tables."
-        (Id_Evenements , evenements_nom , evenements_date , evenement_duree, lieu, evenements_place_dispo)
-        VALUES (NULL , ? , ? , ?, ?, ?)" ;
+        $sql = "INSERT INTO ".$this->table."
+        ( evenements_nom , evenements_date , evenement_duree, lieu, evenements_place_dispo)
+        VALUES (? , ? , ?, ?, ?)" ;
         $query = $this->$connection->prepare($sql);
         try{
             $query->execute([$nom,$date,$duree,$lieu,$placeDispo]);
@@ -29,8 +28,7 @@ class EvenementsModel extends Model{
     }
 
     public function updateEvenement($nom,$placeDispo,$date,$duree,$lieu,$id) {
-        $tables = htmlspecialchars($this->table);
-        $sql = "UPDATE ".$tables."
+        $sql = "UPDATE ".$this->table."
         SET evenements_nom = ? , evenements_date= ? ,
         evenements_duree = ?, lieu = ? , evenements_place_dispo = ?
         WHERE Id_Evenements = ? "; 

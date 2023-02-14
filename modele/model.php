@@ -4,7 +4,8 @@ use modele\connectionFiles\Connexion as Connexion;
 abstract class Model{
 
     // Propriétés permettant de personnaliser les requêtes
-    public $table;
+    protected $table;
+    private $instanceConnection;
     private $connection;
 
      /**
@@ -13,12 +14,11 @@ abstract class Model{
      * @return void
      */
     public function ConnectionBDD(){
-        // On supprime la connexion précédente
-        $this->_connexion = null;
+        // On recupère l'instance de la connexion
+        $this->instanceConnection = Connexion::getInstance();
 
-        // On essaie de se connecter à la base
-        $hconnection = new Connexion();
-        $this->connection = $hconnection->getConnection();
+        // On essaie de se connecter à la base de données
+        $this->connection = $this->instanceConnection->getConnection();
         
     }
 
