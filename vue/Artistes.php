@@ -46,7 +46,7 @@
     </table>
 
    <!-- Button -->
-   <a class="btn btn-primary" href="../controleur/FrontControleur.php?action=addArtiste">Ajouter</a>
+   <a class="btn btn-primary" href="../vue/addArtiste.php">Ajouter</a>
 
 
   <!-- Pop-up Supprimer -->

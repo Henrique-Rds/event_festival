@@ -6,7 +6,7 @@ abstract class Model{
     // Propriétés permettant de personnaliser les requêtes
     protected $table;
     private $instanceConnection;
-    private $connection;
+    protected $connection;
 
      /**
      * Fonction d'initialisation de la base de données

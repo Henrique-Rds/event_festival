@@ -22,7 +22,6 @@ class ArtisteModel extends Model{
         (id, artiste_nom , artiste_nb_musique)
         VALUES (NULL, ? , ? )";
         $query = $this->connection->prepare($sql);
-        var_dump($query);
         try{
             $query->execute([$artisteNom,$artisteNbMusique]);
         }catch (\Exception $e) {

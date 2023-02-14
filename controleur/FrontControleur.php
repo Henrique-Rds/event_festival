@@ -115,23 +115,22 @@ switch ($requested_page) {
                 $nb_musiques = htmlspecialchars((int)$_POST["nb_musiques"]);
                 $artisteModel = new ArtisteModel();
                 $artisteModel->createArtiste($nom_artiste,$nb_musiques);
-
-                header("Location: ../controleur/FrontControleur.php?action=artistes");
+                
+                
             } else {    
                 echo "N0, mail is not set";
                 header('Location: ../vue/accueil.php');
             }
+            
         }
         // Problème : exemple -> Impossible de se connecter à la BD
         catch (\Exception $e) {
             $_SESSION['message'] = "Problème technique."; 
             // Retourner la page login.php
-            // header('Location: ../vue/accueil.php');
+            header('Location: ../vue/accueil.php');
         }
-
-
-        // Retourner la page Evenement.php : page d'Evenement de l'application
-        header("Location: ../vue/addArtiste.php");
+        $_SESSION["Artistes"] = $artisteModel->getAll();
+        header("Location: ../vue/Artistes.php");
     break;
 
 }
