@@ -4,8 +4,9 @@ namespace modele\connectionFiles;
 class Connexion{
     private $driver;
     private $host, $user, $pass, $database, $charset;
+    private static $_instance;
     
-    public function __construct() {
+    private function __construct() {
         // Les informations de connexion sont déclarées dans le fichier Database.php
         $db_cfg = require_once 'Database.php';
         $this->driver=DB_DRIVER;
@@ -15,8 +16,15 @@ class Connexion{
         $this->database=DB_DATABASE;
         $this->charset=DB_CHARSET;
     }
+    public static function getInstance():Connexion
+    {
+        if (is_null(self::$_instance)) {
+            self::$_instance = new Connexion();
+        }
+        return self::$_instance;
+    }
 
-    public function getConnection(){
+    public function getConnection():\PDO{
         // Chaine de connexion
         $dsn = $this->driver.':host='.$this->host.';dbname='.$this->database.';charset='.$this->charset;
         //$dsn = ' mysql:host=localhost;dbname=db_test;charset=utf8';
