@@ -30,24 +30,24 @@
                       
                         <form class="row g-3">
                           <div class="col-12">
-                              <label for="inputEmail4" class="form-label">Nom</label>
-                              <input type="email" class="form-control" id="inputEmail4">
+                              <label for="nom_event" class="form-label">Nom</label>
+                              <input type="text" class="form-control" id="nom_event">
                           </div>
                           <div class="col-12">
-                              <label for="inputPassword4" class="form-label">Date</label>
-                              <input type="password" class="form-control" id="inputPassword4">
+                              <label for="date_event" class="form-label">Date</label>
+                              <input type="Date" class="form-control" id="date_event">
                           </div>
                           <div class="col-12">
-                              <label for="inputAddress" class="form-label">Duree</label>
-                              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                              <label for="duree_event" class="form-label">Duree</label>
+                              <input type="time" class="form-control" id="duree_event" placeholder="">
                           </div>
                           <div class="col-12">
-                              <label for="inputAddress2" class="form-label">Lieu</label>
-                              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                              <label for="lieu_event" class="form-label">Lieu</label>
+                              <input type="text" class="form-control" id="lieu_event" placeholder="">
                           </div>
                           <div class="col-12">
-                              <label for="inputCity" class="form-label">Nombre de places disponibles</label>
-                              <input type="text" class="form-control" id="inputCity">
+                              <label for="nb_places_event" class="form-label">Nombre de places disponibles</label>
+                              <input type="text" class="form-control" id="nb_places_event">
                           </div>
 
                           <div class="btn-form">
