@@ -8,12 +8,19 @@ require_once(__DIR__.'/../Constantes.php');
 session_start();
 
 
-if (isset($_GET['action']))
-    
+if (isset($_GET['action'])){
+
+    var_dump($_GET['action']);
     $requested_page = htmlspecialchars($_GET['action']);
-else 
+
+    if (isset($_SESSION['id'])){
+        $id = htmlspecialchars($_SESSION['id']);
+    }
+} else {
     // Retourner la page d'authentification
     $requested_page = 'accueil';
+}
+    
 if (isset( $_SESSION["Evenements"] ))
     unset( $_SESSION["Evenements"] );
 
@@ -47,6 +54,23 @@ switch ($requested_page) {
         // Retourner la page Evenement.php : page d'Evenement de l'application
         header("Location: ../vue/Evenement.php");
     break;
+
+    case 'supprEvenement':
+        try {
+            $modeleEvenement = new EvenementsModel();
+            $modeleEvenement->deleteOne($_GET['id']);
+            $_SESSION["Evenements"] = $modeleEvenement->getAll();
+        }
+        // Problème : exemple -> Impossible de se connecter à la BD
+        catch (\Exception $e) {
+            $_SESSION['message'] = "Problème technique avec la supression de event."; 
+            // Retourner la page login.php
+            header('Location: ../vue/accueil.php');
+        }
+        // Retourner la page Evenement.php : page d'Evenement de l'application
+        header("Location: ../vue/Evenement.php");
+    break;
+    
 
     case 'artistes':
         try {
