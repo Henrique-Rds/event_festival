@@ -19,7 +19,7 @@ class EvenementsModel extends Model{
         $sql = "INSERT INTO ".$this->table."
         ( evenements_nom , evenements_date , evenement_duree, lieu, evenements_place_dispo)
         VALUES (? , ? , ?, ?, ?)" ;
-        $query = $this->$connection->prepare($sql);
+        $query = $this->connection->prepare($sql);
         try{
             $query->execute([$nom,$date,$duree,$lieu,$placeDispo]);
         }catch (\Exception $e) {
@@ -32,7 +32,7 @@ class EvenementsModel extends Model{
         SET evenements_nom = ? , evenements_date= ? ,
         evenements_duree = ?, lieu = ? , evenements_place_dispo = ?
         WHERE Id_Evenements = ? "; 
-        $query = $this->$connection->prepare($sql);
+        $query = $this->connection->prepare($sql);
         try{
             $query->execute([$nom,$date,$duree,$lieu,$placeDispo,$id]);
         }catch (\Exception $e) {

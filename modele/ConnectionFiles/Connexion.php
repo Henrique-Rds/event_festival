@@ -46,6 +46,7 @@ class Connexion{
         } catch (\PDOException $e) {
             // Lancer une exception à la méthode appelante
             throw new \Exception('Impossible d\'établir la connexion à la BD.');
+            $_SESSION['message'] = 'Impossible d\'établir la connexion à la BD.';
             
         }
     }
