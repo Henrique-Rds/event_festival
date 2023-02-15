@@ -35,7 +35,7 @@
                             <td><?php print_r($artistes['artiste_nom']);?></td>
                             <td><?php print_r($artistes['artiste_nb_musique']); ?></td>
                             <td>
-                                <a class="btn btn-primary" href="../controleur/FrontControleur.php?action=modifArtiste">Modifier</a>
+                                <a class="btn btn-primary" href="/controleur/FrontControleur.php?action=updateArtiste&id_artiste=<?php print_r($artistes['id']);?>" ?>Modifier</a>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#popup-event-delete">Supprimer</button>
                             </td>
                         </tr>

@@ -16,6 +16,7 @@ if (isset($_GET['action'])){
     if (isset($_SESSION['id'])){
         $id = htmlspecialchars($_SESSION['id']);
     }
+
 } else {
     // Retourner la page d'authentification
     $requested_page = 'accueil';
@@ -95,22 +96,54 @@ switch ($requested_page) {
 
     case 'modifArtiste':
         try {
+
+
+            if (!empty($_POST['nom_artiste']) && !empty($_POST['nb_musiques'])) {
+                $nom_artiste = htmlspecialchars($_POST["nom_artiste"]);
+                $nb_musiques = htmlspecialchars((int)$_POST["nb_musiques"]);
+                $artisteModel = new ArtisteModel();
+                $artisteModel->updateArtiste($nom_artiste,$nb_musiques, $id_artistes);
+                
+            } else {    
+                $_SESSION['message'] = "Problème technique try catch."; 
+                // header('Location: ../vue/accueil.php');
+            }
+            var_dump($_POST);
         }
+        // Problème : exemple -> Impossible de se connecter à la BD
+        catch (\Exception $e) {
+            $_SESSION['message'] = "Problème technique."; 
+            // Retourner la page login.php
+            // header('Location: ../vue/accueil.php');
+        }
+
+
+        // Retourner la page Artiste.php : page d'artiste de l'application
+        // $_SESSION["Artistes"] = $artisteModel->getAll();
+        // header("Location: ../vue/Artistes.php");
+    break;
+
+    case 'updateArtiste':
+        try {
+            
+            if (isset($_GET['id_artiste'])){
+                $id_artistes = htmlspecialchars($_GET['id_artiste']);
+                $_SESSION["id_artiste"] = $id_artistes;
+                header('Location: ../vue/modifArtiste.php');
+            }
+        }
+
         // Problème : exemple -> Impossible de se connecter à la BD
         catch (\Exception $e) {
             $_SESSION['message'] = "Problème technique."; 
             // Retourner la page login.php
             header('Location: ../vue/accueil.php');
         }
-
-
-        // Retourner la page Evenement.php : page d'Evenement de l'application
-        header("Location: ../vue/modifArtiste.php");
     break;
 
     case 'addArtiste':
         try {
-            if (isset($_POST['nom_artiste']) && isset($_POST['nb_musiques'])) {
+            if (!empty($_POST['nom_artiste']) && !empty($_POST['nb_musiques'])) {
                 $nom_artiste = htmlspecialchars($_POST["nom_artiste"]);
                 $nb_musiques = htmlspecialchars((int)$_POST["nb_musiques"]);
                 $artisteModel = new ArtisteModel();

@@ -25,33 +25,21 @@ class ArtisteModel extends Model{
         try{
             $query->execute([$artisteNom,$artisteNbMusique]);
         }catch (\Exception $e) {
-            throw new \Exception('Problème lors du create');
+            throw new \Exception('Problème lors du create de l artiste');
         } 
     }
 
-    // public function updateArtisteNom($artisteNom) {
-    //     $sql = "UPDATE ".$this->table." 
-    //     SET artistes_nom=".$artisteNom." 
-    //     WHERE Id_Artistes = ".$this->id ; 
-    //     $query = $this->connection->prepare($sql);
-    //     try{
-    //         $query->execute();
-    //     }catch (\Exception $e) {
-    //         throw new \Exception('Problème lors de l update');
-    //     }
-        
-    // }
+    public function updateArtiste($artisteNom,$artisteNbMusique,$id_param) {
+        $sql = "UPDATE ".$this->table." 
+        SET artistes_nom= ? ,artiste_nb_musique= ?
+        WHERE id= ? " ; 
+        $query = $this->connection->prepare($sql);
+        var_dump($query);
+        try{
+            $query->execute([$artisteNom,$artisteNbMusique,$id_param]);
+        }catch (\Exception $e) {
+            throw new \Exception('Problème lors de l update de l artiste');
+        }
+    }
 
-    // public function updateArtisteNbMusique($artisteNbMusique) {
-    //     $sql = "UPDATE ".$this->table." 
-    //     SET artistes_nom=".$artisteNbMusique." 
-    //     WHERE Id_Artistes = ".$this->id ; 
-    //     $query = $this->connection->prepare($sql);
-    //     try{
-    //         $query->execute();
-    //     }catch (\Exception $e) {
-    //         throw new \Exception('Problème lors de l update');
-    //     }
-        
-    // }
 }
