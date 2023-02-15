@@ -25,23 +25,23 @@
         <input type="hidden" name="id_event" id="id_event" value=<?php  print_r($_SESSION['OneEvent']['id']) ?>>
         <div class="col-12">
             <label for="nom_event" class="form-label">Nom de l'évènement</label>
-            <input type="text"  value=<?php  print_r($_SESSION['OneEvent']['evenements_nom']) ?> maxlength="50" class="form-control" id="nom_event" name="nom_event">
+            <input type="text"  maxlength="50" value=<?php  print_r($_SESSION['OneEvent']['evenements_nom']) ?> maxlength="50" class="form-control" id="nom_event" name="nom_event">
         </div>
         <div class="col-12">
             <label for="date_event" class="form-label">Date de l'évènement</label>
-            <?php echo '<input type="datetime-local" value="' . $dt->format('Y-m-d\TH:i') . '" class="form-control" id="date_event" name="date_event">' ?>
+            <?php echo '<input  type="datetime-local" value="' . $dt->format('Y-m-d\TH:i') . '" class="form-control" id="date_event" name="date_event">' ?>
         </div>
         <div class="col-12">
             <label for="duree_event" class="form-label">Duree de l'évènement</label>
-            <input type="number" value=<?php  print_r($_SESSION['OneEvent']['evenements_duree']) ?> maxlength="11" class="form-control" id="duree_event" name="duree_event">
+            <input type="number" maxlength="11" value=<?php  print_r($_SESSION['OneEvent']['evenements_duree']) ?> maxlength="11" class="form-control" id="duree_event" name="duree_event">
         </div>
         <div class="col-12">
             <label for="lieu_event" class="form-label">Lieu de l'évènement</label>
-            <input type="text" value=<?php  print_r($_SESSION['OneEvent']['lieu']) ?>  maxlength="250" class="form-control" id="lieu_event" name="lieu_event">
+            <input type="text" maxlength="250" value=<?php  print_r($_SESSION['OneEvent']['lieu']) ?>  maxlength="250" class="form-control" id="lieu_event" name="lieu_event">
         </div>
         <div class="col-12">
             <label for="nb_places" class="form-label">Nombre de places de l'évènement</label>
-            <input type="number" value=<?php  print_r($_SESSION['OneEvent']['evenements_place_dispo']) ?> maxlength="11" class="form-control" id="nb_places" name="nb_places">
+            <input type="number"  maxlength="11 value=<?php  print_r($_SESSION['OneEvent']['evenements_place_dispo']) ?> maxlength="11" class="form-control" id="nb_places" name="nb_places">
         </div>
 
         <div class="btn-form">
