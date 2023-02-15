@@ -27,11 +27,11 @@ class EvenementsModel extends Model{
         }
     }
 
-    public function updateEvenement($nom,$placeDispo,$date,$duree,$lieu,$id) {
+    public function updateEvenement($nom,$date,$duree,$lieu,$placeDispo,$id) {
         $sql = "UPDATE ".$this->table."
         SET evenements_nom = ? , evenements_date= ? ,
         evenements_duree = ?, lieu = ? , evenements_place_dispo = ?
-        WHERE Id_Evenements = ? "; 
+        WHERE id = ? "; 
         $query = $this->connection->prepare($sql);
         try{
             $query->execute([$nom,$date,$duree,$lieu,$placeDispo,$id]);

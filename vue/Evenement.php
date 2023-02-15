@@ -47,9 +47,9 @@
                         <td><?php print_r($evenement['lieu']); ?></td>
                         <td><?php print_r($evenement['evenements_place_dispo']); ?></td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup-event">
+                            <a type="button" class="btn btn-primary"  href=<?php print_r("../controleur/FrontControleur.php?action=toModifEvent&id_event=".$evenement['id'])?>>
                                 Modifier
-                            </button>
+                            </a>
                             <button  type="button" id=<?php print_r($evenement['id']); ?> class="btn btn-primary supprButton" onclick="getSupprEvent(this.id)" data-toggle="modal" data-target="#popup-eventSuppr">
                                 Supprimer
                             </button>
