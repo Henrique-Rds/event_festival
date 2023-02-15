@@ -35,8 +35,8 @@
                             <td><?php print_r($artistes['artiste_nom']);?></td>
                             <td><?php print_r($artistes['artiste_nb_musique']); ?></td>
                             <td>
-                                <a class="btn btn-primary" href="/controleur/FrontControleur.php?action=updateArtiste&id_artiste=<?php print_r($artistes['id']);?>" ?>Modifier</a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#popup-event-delete">Supprimer</button>
+                                <a class="btn btn-primary" href=<?php print_r("../controleur/FrontControleur.php?action=toModifArtiste&id_artiste=".$artistes['id'])?>>Modifier</a>
+                                <button type="button" id=<?php print_r($artistes['id']);?> class="btn btn-danger" onclick="getSupprArtiste(this.id)" data-toggle="modal" data-target="#popup-event-delete">Supprimer</button>
                             </td>
                         </tr>
                         <?php
@@ -46,6 +46,7 @@
     </table>
 
    <!-- Button -->
+   <a class="btn btn-primary" href="../vue/accueil.php">Retour à l'accueil</a>
    <a class="btn btn-primary" href="../vue/addArtiste.php">Ajouter</a>
 
 
@@ -57,7 +58,7 @@
                         <h1>Supprimer cet artiste ?</h1>
                           <div class="btn-form">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                              <button onclick="redirectSupprArtiste()" class="btn btn-danger">Supprimer</button>
                           </div>
                         </form>
                       </div>
@@ -67,7 +68,8 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> 
+    <script type="text/javascript" src="./js/supprArtiste.js"></script>   
   </body>
 
 </html>

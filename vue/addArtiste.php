@@ -21,11 +21,11 @@
     <form class="row g-3" action="../controleur/FrontControleur.php?action=addArtiste" method="POST">
         <div class="col-12">
             <label for="nom_artiste" class="form-label">Nom de l'artiste</label>
-            <input type="text" class="form-control" id="nom_artiste" name="nom_artiste">
+            <input type="text" class="form-control" id="nom_artiste" name="nom_artiste" maxlength="50">
         </div>
         <div class="col-12">
             <label for="nb_musiques" class="form-label">Nombre de musiques</label>
-            <input type="number" class="form-control" id="nb_musiques" name="nb_musiques">
+            <input type="number" class="form-control" id="nb_musiques" name="nb_musiques" maxlength="11">
         </div>
 
         <div class="btn-form">

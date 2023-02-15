@@ -16,15 +16,7 @@
 
 <body>
     <h1>Evenements à venir</h1>
-
-
-    <!-- Button -->
-    <a   href="../vue/addEvenement.php">
-        Ajouter
-    </a>
   
-
-
     <table class="table">
           <thead class="thead-dark">
               <tr>
@@ -50,7 +42,7 @@
                             <a type="button" class="btn btn-primary"  href=<?php print_r("../controleur/FrontControleur.php?action=toModifEvent&id_event=".$evenement['id'])?>>
                                 Modifier
                             </a>
-                            <button  type="button" id=<?php print_r($evenement['id']); ?> class="btn btn-primary supprButton" onclick="getSupprEvent(this.id)" data-toggle="modal" data-target="#popup-eventSuppr">
+                            <button  type="button" id=<?php print_r($evenement['id']); ?> class="btn btn-danger" onclick="getSupprEvent(this.id)" data-toggle="modal" data-target="#popup-eventSuppr">
                                 Supprimer
                             </button>
                     </tr>
@@ -61,6 +53,12 @@
           
           </tbody>
       </table>
+
+
+    <!-- Button -->
+    <a class="btn btn-primary" href="../vue/accueil.php">Retour à l'accueil</a>
+    <a class="btn btn-primary"  href="../vue/addEvenement.php">Ajouter</a>
+    
 
     <!-- Pop-up supression -->
     <div id="popup-eventSuppr" class="modal">
@@ -73,7 +71,7 @@
                     <br/>
                     <div class="btn-form">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                            <button  class="btn btn-primary"  onclick="redirectSupprEvenement()">Supprimer</a>
+                            <button  class="btn btn-danger"  onclick="redirectSupprEvenement()">Supprimer</a>
                     </div>
                     </form>
                 </div>

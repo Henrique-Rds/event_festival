@@ -26,6 +26,9 @@ if (isset( $_SESSION["Evenements"] ))
 if (isset( $_SESSION["OneEvent"] ))
     unset( $_SESSION["OneEvent"] ); 
 
+if (isset( $_SESSION["OneArtiste"] ))
+    unset( $_SESSION["OneArtiste"] ); 
+
 if (isset( $_SESSION["Artistes"] ))
     unset( $_SESSION["Artistes"] );
 
@@ -164,8 +167,8 @@ switch ($requested_page) {
         try {
             
             //$modeleEvenement = new modele\ArtisteModel\ArtisteModel();
-            $artisteModel = new ArtisteModel();
-            $_SESSION["Artistes"] = $artisteModel->getAll();
+            $modeleArtiste = new ArtisteModel();
+            $_SESSION["Artistes"] = $modeleArtiste->getAll();
             
         }
         // Problème : exemple -> Impossible de se connecter à la BD
@@ -181,51 +184,53 @@ switch ($requested_page) {
     break;
 
 
-    case 'modifArtiste':
+    case 'toModifArtiste':
         try {
 
-
-            if (!empty($_POST['nom_artiste']) && !empty($_POST['nb_musiques'])) {
-                $nom_artiste = htmlspecialchars($_POST["nom_artiste"]);
-                $nb_musiques = htmlspecialchars((int)$_POST["nb_musiques"]);
-                $artisteModel = new ArtisteModel();
-                $artisteModel->updateArtiste($nom_artiste,$nb_musiques, $id_artistes);
+            if (!empty($_GET['id_artiste'])){
+                
+                $modeleArtiste = new ArtisteModel();
+                $_SESSION["OneArtiste"] = $modeleArtiste->getOne(htmlspecialchars($_GET['id_artiste']));
                 
             } else {    
-                $_SESSION['message'] = "Problème technique try catch."; 
-                // header('Location: ../vue/accueil.php');
-            }
-            var_dump($_POST);
-        }
-        // Problème : exemple -> Impossible de se connecter à la BD
-        catch (\Exception $e) {
-            $_SESSION['message'] = "Problème technique."; 
-            // Retourner la page login.php
-            // header('Location: ../vue/accueil.php');
-        }
-
-
-        // Retourner la page Artiste.php : page d'artiste de l'application
-        // $_SESSION["Artistes"] = $artisteModel->getAll();
-        // header("Location: ../vue/Artistes.php");
-    break;
-
-    case 'updateArtiste':
-        try {
-            
-            if (isset($_GET['id_artiste'])){
-                $id_artistes = htmlspecialchars($_GET['id_artiste']);
-                $_SESSION["id_artiste"] = $id_artistes;
-                header('Location: ../vue/modifArtiste.php');
+                $_SESSION['message'] = "Problème technique au niveau de la récuperation de l'id de l'evenement."; 
+                header('Location: ../vue/accueil.php');
             }
         }
-
-        // Problème : exemple -> Impossible de se connecter à la BD
         catch (\Exception $e) {
-            $_SESSION['message'] = "Problème technique."; 
-            // Retourner la page login.php
+            $_SESSION['message'] = "Problème technique vers la page."; 
             header('Location: ../vue/accueil.php');
         }
+        header("Location: ../vue/modifArtiste.php");
+    break;
+
+
+    case 'modifArtiste':
+        try {
+            // On verifie le contenu des inputs
+            if (!empty($_POST['id_artiste']) && !empty($_POST['nom_artiste']) && !empty($_POST['nb_musiques'])) {
+                $id_artiste = htmlspecialchars($_POST["id_artiste"]);
+                $nom_artiste = htmlspecialchars($_POST["nom_artiste"]);
+                $nb_musique = htmlspecialchars($_POST["nb_musiques"]);
+                $modeleArtiste = new ArtisteModel();
+                $modeleArtiste->updateArtiste($nom_artiste,$nb_musique,$id_artiste);
+                
+            } else {    
+                $_SESSION['message'] = "Champs de modif vide."; 
+                // header('Location: ../vue/accueil.php');
+            }
+        }
+        // Problème : exemple -> Impossible de se connecter à la BD
+        catch (\Exception $e) {
+            $_SESSION['message'] = "Problème technique au niveau de l'update de event."; 
+            // Retourner la page accueil.php
+            header('Location: ../vue/accueil.php');
+        }
+
+
+        // Retourner la page Evenement.php : page d'Evenement de l'application
+        $_SESSION["Artistes"] = $modeleArtiste->getAll();
+        header("Location: ../vue/Artistes.php");
     break;
 
     case 'addArtiste':
@@ -233,8 +238,8 @@ switch ($requested_page) {
             if (!empty($_POST['nom_artiste']) && !empty($_POST['nb_musiques'])) {
                 $nom_artiste = htmlspecialchars($_POST["nom_artiste"]);
                 $nb_musiques = htmlspecialchars((int)$_POST["nb_musiques"]);
-                $artisteModel = new ArtisteModel();
-                $artisteModel->createArtiste($nom_artiste,$nb_musiques);
+                $modeleArtiste = new ArtisteModel();
+                $modeleArtiste->createArtiste($nom_artiste,$nb_musiques);
                 
                 
             } else {    
@@ -249,7 +254,24 @@ switch ($requested_page) {
             // Retourner la page login.php
             header('Location: ../vue/accueil.php');
         }
-        $_SESSION["Artistes"] = $artisteModel->getAll();
+        $_SESSION["Artistes"] = $modeleArtiste->getAll();
+        header("Location: ../vue/Artistes.php");
+    break;
+
+    //Action de suppression d'Evenement
+    case 'supprArtiste':
+        try {
+            $modeleArtiste = new ArtisteModel();
+            $modeleArtiste->deleteOne($_GET['id']);
+            $_SESSION["Artistes"] = $modeleArtiste->getAll();
+        }
+        // Problème : exemple -> Impossible de se connecter à la BD
+        catch (\Exception $e) {
+            $_SESSION['message'] = "Problème technique avec la supression de l artiste."; 
+            // Retourner la page login.php
+            header('Location: ../vue/accueil.php');
+        }
+        // Retourner la page Evenement.php : page d'Evenement de l'application
         header("Location: ../vue/Artistes.php");
     break;
 
