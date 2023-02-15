@@ -9,13 +9,11 @@ session_start();
 
 
 if (isset($_GET['action'])){
-
-    var_dump($_GET['action']);
     $requested_page = htmlspecialchars($_GET['action']);
 
-    if (isset($_SESSION['id'])){
-        $id = htmlspecialchars($_SESSION['id']);
-    }
+    // if (isset($_SESSION['id'])){
+    //     $id = htmlspecialchars($_SESSION['id']);
+    // }
 } else {
     // Retourner la page d'authentification
     $requested_page = 'accueil';
@@ -40,18 +38,44 @@ switch ($requested_page) {
     case 'evenement':
         try {
             
-            //$modeleEvenement = new modele\EnvenementsModel\EvenementsModel();
             $modeleEvenement = new EvenementsModel();
             $_SESSION["Evenements"] = $modeleEvenement->getAll();
         }
         // Problème : exemple -> Impossible de se connecter à la BD
         catch (\Exception $e) {
             $_SESSION['message'] = "Problème technique avec les events."; 
-            // Retourner la page login.php
+            // Retourner la page accueil.php
             header('Location: ../vue/accueil.php');
+            break;
         }
 
         // Retourner la page Evenement.php : page d'Evenement de l'application
+        header("Location: ../vue/Evenement.php");
+    break;
+
+    case 'addEvent':
+        try {
+            if (!empty($_POST['nom_event']) && !empty($_POST['date_event'])  && !empty($_POST['duree_event']) && !empty($_POST['lieu_event']) && !empty($_POST['nb_places'])) {
+                $nom_event = htmlspecialchars($_POST["nom_event"]);
+                $date_event = htmlspecialchars($_POST["date_event"]);
+                $duree_event = htmlspecialchars((int)$_POST["duree_event"]);
+                $lieu_event = htmlspecialchars($_POST["lieu_event"]);
+                $nb_places = htmlspecialchars($_POST["nb_places"]);
+                $modeleEvenement = new EvenementsModel();
+                $modeleEvenement->createEvenement($nom_event,$date_event,$duree_event,$lieu_event,$nb_places);
+            } else {    
+                $_SESSION['message'] = "Problème technique a la creation de l event."; 
+                var_dump($_POST);
+                var_dump($_SESSION);
+                header('Location: ../vue/addEvenement.php');
+            }
+        }
+        // Problème : exemple -> Impossible de se connecter à la BD
+        catch (\Exception $e) {
+            $_SESSION['message'] = "Problème technique a la creation de l event."; 
+            break;
+        }
+        $_SESSION["Evenements"] = $modeleEvenement->getAll();
         header("Location: ../vue/Evenement.php");
     break;
 

@@ -12,18 +12,18 @@ class EvenementsModel extends Model{
 
         // Nous ouvrons la connexion à la base de données
         $this->ConnectionBDD();
-        echo "connection fin";
     }
 
-    public function createEvenement($nomEvent,$dateEvent,$eventPlaceDispo) {
+    public function createEvenement($nom,$date,$duree,$lieu,$placeDispo) {
         $sql = "INSERT INTO ".$this->table."
-        ( evenements_nom , evenements_date , evenement_duree, lieu, evenements_place_dispo)
-        VALUES (? , ? , ?, ?, ?)" ;
+        (id, evenements_nom , evenements_date , evenements_duree, lieu, evenements_place_dispo)
+        VALUES (NULL,? , ? , ?, ?, ?)" ;
         $query = $this->connection->prepare($sql);
         try{
             $query->execute([$nom,$date,$duree,$lieu,$placeDispo]);
         }catch (\Exception $e) {
             throw new \Exception('Problème lors du create');
+            var_dump($e);
         }
     }
 

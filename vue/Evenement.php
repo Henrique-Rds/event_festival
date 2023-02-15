@@ -19,9 +19,9 @@
 
 
     <!-- Button -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup-event">
-      Ajouter
-  </button>
+    <a   href="../vue/addEvenement.php">
+        Ajouter
+    </a>
   
 
 
@@ -50,7 +50,7 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup-event">
                                 Modifier
                             </button>
-                            <button id="supprButton" type="button" value=<?php print_r($evenement['id']); ?> class="btn btn-primary" data-toggle="modal" data-target="#popup-eventSuppr">
+                            <button  type="button" id=<?php print_r($evenement['id']); ?> class="btn btn-primary supprButton" onclick="getSupprEvent(this.id)" data-toggle="modal" data-target="#popup-eventSuppr">
                                 Supprimer
                             </button>
                     </tr>
@@ -73,7 +73,7 @@
                     <br/>
                     <div class="btn-form">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                            <button id="supprButtonConfirm"  class="btn btn-primary">Supprimer</a>
+                            <button  class="btn btn-primary"  onclick="redirectSupprEvenement()">Supprimer</a>
                     </div>
                     </form>
                 </div>
