@@ -29,7 +29,8 @@
         <div class="col-12">
             <label for="nb_musiques" class="form-label">Nombre de musiques</label>
             <!-- On attribue a la value le nombre de musiques actuel dans la bdd (on le stocke dans une variable de session) -->
-            <input type="number" class="form-control" id="nb_musiques" name="nb_musiques" value=<?php  print_r($_SESSION['OneArtiste']['artiste_nb_musique']) ?> maxlength="11">
+            <!-- utilisation du type car le type number ignore le maxlength -->
+            <input type="tel" class="form-control" id="nb_musiques" name="nb_musiques" value=<?php  print_r($_SESSION['OneArtiste']['artiste_nb_musique']) ?> maxlength="9">
         </div>
 
         <div class="btn-form">

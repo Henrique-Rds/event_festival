@@ -29,15 +29,16 @@
         </div>
         <div class="col-12">
             <label for="duree_event" class="form-label">Duree de l'évènement</label>
-            <input type="number"  maxlength="11" class="form-control" id="duree_event" name="duree_event">
+            <input type="tel"  maxlength="9" class="form-control" id="duree_event" name="duree_event">
         </div>
         <div class="col-12">
             <label for="lieu_event" class="form-label">Lieu de l'évènement</label>
             <input type="text"  maxlength="250" class="form-control" id="lieu_event" name="lieu_event">
         </div>
         <div class="col-12">
+            <!-- utilisation du type car le type number ignore le maxlength -->
             <label for="nb_places" class="form-label">Nombre de places de l'évènement</label>
-            <input type="number"  maxlength="11" class="form-control" id="nb_places" name="nb_places">
+            <input type="tel"  maxlength="9" class="form-control" id="nb_places" name="nb_places">
         </div>
 
         <div class="btn-form">

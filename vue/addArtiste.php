@@ -24,8 +24,9 @@
             <input type="text" class="form-control" id="nom_artiste" name="nom_artiste" maxlength="50">
         </div>
         <div class="col-12">
+            <!-- utilisation du type car le type number ignore le maxlength -->
             <label for="nb_musiques" class="form-label">Nombre de musiques</label>
-            <input type="number" class="form-control" id="nb_musiques" name="nb_musiques" maxlength="11">
+            <input type="tel" class="form-control" id="nb_musiques" name="nb_musiques" maxlength="9">
         </div>
 
         <div class="btn-form">
