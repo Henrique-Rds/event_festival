@@ -305,5 +305,52 @@ switch ($requested_page) {
         header("Location: ../vue/GestionArtisteEvent.php");
     break;
 
+    case 'toaddGestion':
+        try {
+
+            // On instancie la classe dans notre modele
+            $modeleArtiste = new ArtisteModel();
+            $_SESSION["Artistes"] = $modeleArtiste->getAll();
+
+            $modeleEvenement = new EvenementsModel();
+            $_SESSION["Evenements"] = $modeleEvenement->getAll();
+
+            
+        }
+        // Problème : exemple -> Impossible de se connecter à la BD
+        catch (\Exception $e) {
+            $_SESSION['message'] = "Problème technique."; 
+            // Retourner la page accueil
+            header('Location: ../vue/accueil.php');
+        }
+        header("Location: ../vue/addGestion.php");
+    break;
+
+    case 'addGestion':
+        try {
+
+            if (!empty($_POST['id_event_gestion']) && !empty($_POST['id_artiste_gestion'])) {
+                $event_id = htmlspecialchars($_POST["id_event_gestion"]);
+                $artiste_id = htmlspecialchars((int)$_POST["id_artiste_gestion"]);
+                $modeleGestion = new GestionModel();
+                $modeleGestion->createAssociation($event_id,$artiste_id);
+                
+                
+            } else {    
+                echo "Erreur trouvée dans le if";
+                // header('Location: ../vue/accueil.php');
+            }
+            
+        }
+        // Problème : exemple -> Impossible de se connecter à la BD
+        catch (\Exception $e) {
+            $_SESSION['message'] = "Problème technique."; 
+            // Retourner la page login.php
+            header('Location: ../vue/accueil.php');
+        }
+        $_SESSION["Gestion"] = $modeleGestion->getAssociation();
+        header("Location: ../vue/GestionArtisteEvent.php");
+    break;
+
 }
 ?>

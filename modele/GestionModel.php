@@ -17,7 +17,7 @@ class GestionModel extends Model{
 
     public function getAssociation(){
         $sql = "SELECT evenements_nom, artiste_nom FROM `evenements`,`artistes`,".$this->table."
-        WHERE evenements.id = evenements_artistes 
+        WHERE evenements.id = evenements_artistes.Id_Evenements
         AND artistes.id = evenements_artistes.Id_Artistes";
         $query = $this->connection->prepare($sql);
         $query->execute();
@@ -31,9 +31,9 @@ class GestionModel extends Model{
         VALUES ( ? , ? )";
         $query = $this->connection->prepare($sql);
         try{
-            $query->execute([$eventId,$artisteID]);
+            $query->execute([$eventId,$artisteId]);
         }catch (\Exception $e) {
-            throw new \Exception('Problème lors du create de l artiste');
+            throw new \Exception('Problème lors du create de l association');
         } 
     }
 

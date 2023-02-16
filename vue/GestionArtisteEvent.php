@@ -40,14 +40,13 @@
                         </tr>
                         <?php
                     }
-                    var_dump($_SESSION);
             ?>
         </tbody>
     </table>
 
    <!-- Button -->
    <a class="btn btn-primary" href="../vue/accueil.php">Retour à l'accueil</a>
-   <a class="btn btn-primary" href="../vue/addGestion.php">Ajouter</a>
+   <a class="btn btn-primary" href="../controleur/FrontControleur.php?action=toaddGestion">Ajouter</a>
 
   <!-- Pop-up Supprimer -->
   <div id="popup-event-delete" class="modal">
