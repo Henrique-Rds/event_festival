@@ -352,5 +352,23 @@ switch ($requested_page) {
         header("Location: ../vue/GestionArtisteEvent.php");
     break;
 
+
+    //Action de suppression d'Evenement
+    case 'supprGestion':
+        try {
+            $modeleArtiste = new ArtisteModel();
+            $modeleArtiste->deleteOne($_GET['id']);
+            $_SESSION["Artistes"] = $modeleArtiste->getAll();
+        }
+        // Problème : exemple -> Impossible de se connecter à la BD
+        catch (\Exception $e) {
+            $_SESSION['message'] = "Problème technique avec la supression de l artiste."; 
+            // Retourner la page login.php
+            header('Location: ../vue/accueil.php');
+        }
+        // Retourner la page Artiste.php : page d'Artiste de l'application
+        header("Location: ../vue/Artistes.php");
+    break;
+
 }
 ?>

@@ -35,7 +35,7 @@
                             <td><?php print_r($gestion['evenements_nom']);?></td>
                             <td><?php print_r($gestion['artiste_nom']); ?></td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#popup-event-delete">Supprimer</button>
+                            <button type="button" id=<?php print_r($gestion['id']);?> class="btn btn-danger" onclick="getSupprArtiste(this.id)" data-toggle="modal" data-target="#popup-event-delete">Supprimer</button>
                             </td>
                         </tr>
                         <?php

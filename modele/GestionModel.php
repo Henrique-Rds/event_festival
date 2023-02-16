@@ -37,16 +37,4 @@ class GestionModel extends Model{
         } 
     }
 
-    // public function updateArtiste($artisteNom,$artisteNbMusique,$id_param) {
-    //     $sql = "UPDATE ".$this->table." 
-    //     SET artiste_nom= ? ,artiste_nb_musique= ?
-    //     WHERE id= ? " ; 
-    //     $query = $this->connection->prepare($sql);
-    //     try{
-    //         $query->execute([$artisteNom,$artisteNbMusique,$id_param]);
-    //     }catch (\Exception $e) {
-    //         throw new \Exception('Problème lors de l update de l artiste');
-    //     }
-    // }
-
 }
