@@ -356,9 +356,10 @@ switch ($requested_page) {
     //Action de suppression d'Evenement
     case 'supprGestion':
         try {
-            $modeleArtiste = new ArtisteModel();
-            $modeleArtiste->deleteOne($_GET['id']);
-            $_SESSION["Artistes"] = $modeleArtiste->getAll();
+            $modeleGestion = new GestionModel();
+            $idEvent = htmlspecialchars($_GET['idEvent']);
+            $idArtiste = htmlspecialchars($_GET['idArtiste']);
+            $modeleGestion->deleteGestionArtisteEvent( $idEvent , $idArtiste );
         }
         // Problème : exemple -> Impossible de se connecter à la BD
         catch (\Exception $e) {
@@ -366,8 +367,11 @@ switch ($requested_page) {
             // Retourner la page login.php
             header('Location: ../vue/accueil.php');
         }
+
+        $modeleGestion = new GestionModel();
+        $_SESSION["Gestion"] = $modeleGestion->getAssociation();
         // Retourner la page Artiste.php : page d'Artiste de l'application
-        header("Location: ../vue/Artistes.php");
+        header("Location: ../vue/GestionArtisteEvent.php");
     break;
 
 }

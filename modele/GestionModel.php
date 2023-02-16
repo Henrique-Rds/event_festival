@@ -16,7 +16,7 @@ class GestionModel extends Model{
     }
 
     public function getAssociation(){
-        $sql = "SELECT evenements_nom, artiste_nom FROM `evenements`,`artistes`,".$this->table."
+        $sql = "SELECT evenements_nom, artiste_nom , evenements.id as eventId, artistes.id as artisteId  FROM `evenements`,`artistes`,".$this->table."
         WHERE evenements.id = evenements_artistes.Id_Evenements
         AND artistes.id = evenements_artistes.Id_Artistes";
         $query = $this->connection->prepare($sql);
@@ -35,6 +35,14 @@ class GestionModel extends Model{
         }catch (\Exception $e) {
             throw new \Exception('Problème lors du create de l association');
         } 
+    }
+
+    // suppression d'une association artiste evenement en fonction de l'id de l'evenement et de l'artiste
+    public function deleteGestionArtisteEvent($eventId,$artisteId){
+        $sql = "DELETE FROM ".$this->table." WHERE Id_Evenements= ? AND Id_Artistes= ?";
+        $query = $this->connection->prepare($sql);
+        $query->execute([$eventId , $artisteId]);
+ 
     }
 
 }
