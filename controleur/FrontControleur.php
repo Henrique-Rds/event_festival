@@ -261,7 +261,7 @@ switch ($requested_page) {
         header("Location: ../vue/Artistes.php");
     break;
 
-    //Action de suppression d'Evenement
+    //Action de suppression d'Artiste
     case 'supprArtiste':
         try {
             $modeleArtiste = new ArtisteModel();
@@ -274,7 +274,7 @@ switch ($requested_page) {
             // Retourner la page login.php
             header('Location: ../vue/accueil.php');
         }
-        // Retourner la page Evenement.php : page d'Evenement de l'application
+        // Retourner la page Artiste.php : page d'Artiste de l'application
         header("Location: ../vue/Artistes.php");
     break;
 
