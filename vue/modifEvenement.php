@@ -47,7 +47,7 @@
 
         <div class="btn-form">
             <a href="../controleur/FrontControleur.php?action=evenement" class="btn btn-secondary">Annuler</a>
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn btn-primary">Modifier</button>
         </div>
 
         

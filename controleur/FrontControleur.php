@@ -166,8 +166,9 @@ switch ($requested_page) {
     case 'artistes':
         try {
             
-            //$modeleEvenement = new modele\ArtisteModel\ArtisteModel();
+            // On instancie la classe dans notre modele
             $modeleArtiste = new ArtisteModel();
+            // on stocke le résultat du getAll dans $_SESSION["Artistes"]
             $_SESSION["Artistes"] = $modeleArtiste->getAll();
             
         }
@@ -179,21 +180,21 @@ switch ($requested_page) {
         }
 
 
-        // Retourner la page Evenement.php : page d'Evenement de l'application
+        // Retourner la pageArtistes.php : page d'Artistes de l'application
         header("Location: ../vue/Artistes.php");
     break;
 
 
     case 'toModifArtiste':
         try {
-
+            // On récupere l id_artiste qui se trouve dans l URL
             if (!empty($_GET['id_artiste'])){
                 
                 $modeleArtiste = new ArtisteModel();
                 $_SESSION["OneArtiste"] = $modeleArtiste->getOne(htmlspecialchars($_GET['id_artiste']));
                 
             } else {    
-                $_SESSION['message'] = "Problème technique au niveau de la récuperation de l'id de l'evenement."; 
+                $_SESSION['message'] = "Problème technique au niveau de la récuperation de l'id de l'Artiste."; 
                 header('Location: ../vue/accueil.php');
             }
         }
@@ -209,9 +210,11 @@ switch ($requested_page) {
         try {
             // On verifie le contenu des inputs
             if (!empty($_POST['id_artiste']) && !empty($_POST['nom_artiste']) && !empty($_POST['nb_musiques'])) {
+                // On met tous les post dans des variables
                 $id_artiste = htmlspecialchars($_POST["id_artiste"]);
                 $nom_artiste = htmlspecialchars($_POST["nom_artiste"]);
                 $nb_musique = htmlspecialchars($_POST["nb_musiques"]);
+                // on instancie et on update
                 $modeleArtiste = new ArtisteModel();
                 $modeleArtiste->updateArtiste($nom_artiste,$nb_musique,$id_artiste);
                 
@@ -228,7 +231,7 @@ switch ($requested_page) {
         }
 
 
-        // Retourner la page Evenement.php : page d'Evenement de l'application
+        // Retourner la page Artiste.php : page d'Artiste de l'application
         $_SESSION["Artistes"] = $modeleArtiste->getAll();
         header("Location: ../vue/Artistes.php");
     break;
