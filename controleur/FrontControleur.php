@@ -3,6 +3,7 @@
 require_once("../Autoloader.php");
 require_once("../modele/EvenementsModel.php");
 require_once("../modele/artisteModel.php");
+require_once("../modele/GestionModel.php");
 require_once(__DIR__.'/../Constantes.php');
 
 session_start();
@@ -31,6 +32,9 @@ if (isset( $_SESSION["OneArtiste"] ))
 
 if (isset( $_SESSION["Artistes"] ))
     unset( $_SESSION["Artistes"] );
+
+if (isset( $_SESSION["Gestion"] ))
+    unset( $_SESSION["Gestion"] );
 
 if (isset( $_SESSION["message"] ))
     unset( $_SESSION["message"] );
@@ -274,8 +278,31 @@ switch ($requested_page) {
             // Retourner la page login.php
             header('Location: ../vue/accueil.php');
         }
-        // Retourner la page Evenement.php : page d'Evenement de l'application
+        // Retourner la page Artiste.php : page d'Artiste de l'application
         header("Location: ../vue/Artistes.php");
+    break;
+
+
+    // GESTION ARTISTES ET EVENEMENTS
+    case 'gestion':
+        try {
+            // On instancie la classe dans notre modele
+            $modeleGestion = new GestionModel();
+            // on stocke le résultat du getAll version gestionnaire dans $_SESSION["Gestion"]
+            $_SESSION["Gestion"] = $modeleGestion->getAssociation();
+            
+            
+        }
+        // Problème : exemple -> Impossible de se connecter à la BD
+        catch (\Exception $e) {
+            $_SESSION['message'] = "Problème technique."; 
+            // Retourner la page login.php
+            header('Location: ../vue/accueil.php');
+        }
+
+
+        // Retourner la page GestionArtisteEvent.php : page de Gestion des Artiste et Event de l'application
+        header("Location: ../vue/GestionArtisteEvent.php");
     break;
 
 }
