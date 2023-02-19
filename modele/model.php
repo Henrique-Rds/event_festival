@@ -24,6 +24,7 @@ abstract class Model{
 
     /**
      * Méthode permettant d'obtenir un enregistrement de la table choisie en fonction d'un id
+     * Ici l'utilisation du select * est utile car c'est une méthode générique
      *
      * return un objet
      */
@@ -38,7 +39,7 @@ abstract class Model{
 
     /**
      * Méthode permettant d'obtenir tous les enregistrements de la table choisie
-     *
+     * Ici l'utilisation du select * est utile car c'est une méthode générique
      * return liste d'objets
      */
     public function getAll(){

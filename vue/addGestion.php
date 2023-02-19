@@ -19,10 +19,11 @@
     <h1>Ajouter un artiste à un évenement</h1>
     <form class="row g-3" action="../controleur/FrontControleur.php?action=addGestion" method="POST">
         <div class="col-12">
+           
             <select name="id_event_gestion" id="id_event_gestion">
                 <option value="">--Choisissez un évènement--</option>
                 <?php
-                     foreach ($_SESSION["Evenements"] as $gestion) {
+                     foreach (unserialize($_GET['donnes_evenement']) as $gestion) {
                         ?>
                         <option name="event_id" value="<?php print_r($gestion['id']);?>"><?php print_r($gestion['evenements_nom']);?></option>
                         <?php
@@ -34,7 +35,7 @@
             <select name="id_artiste_gestion" id="id_artiste_gestion">
                 <option value="">--Choisissez un artiste--</option>
                     <?php
-                        foreach ($_SESSION["Artistes"] as $gestion) {
+                        foreach (unserialize($_GET['donnes_artiste']) as $gestion) {
                             ?>
                             <option name="artiste_id" value="<?php print_r($gestion['id']); ?>"><?php print_r($gestion['artiste_nom']); ?></option>
                             <?php

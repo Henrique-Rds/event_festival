@@ -29,7 +29,7 @@
         <tbody>
             <?php
                     // On rempli notre tableau
-                    foreach ($_SESSION["Gestion"] as $gestion) {
+                    foreach (unserialize($_GET['gestion']) as $gestion) {
                         
                         ?>
                         <tr>

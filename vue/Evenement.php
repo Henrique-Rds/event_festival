@@ -24,25 +24,26 @@
                   <th scope="col">Date</th>
                   <th scope="col">Duree</th>
                   <th scope="col">Lieu</th>
-                  <th scope="col">Places Disponibles</th>
+                  <th scope="col">Capacité</th>
                   <th scope="col">Actions</th>
               </tr>
           </thead>
           <tbody>
             <?php
-                foreach ($_SESSION["Evenements"] as $evenement) {
+      
+                foreach (unserialize($_GET['donnes_evenement']) as $evenement) {
                     ?>
                     <tr>
                         <td><?php print_r($evenement['evenements_nom']);?></td>
                         <td><?php print_r($evenement['evenements_date']); ?></td>
                         <td><?php print_r($evenement['evenements_duree']); ?></td>
                         <td><?php print_r($evenement['lieu']); ?></td>
-                        <td><?php print_r($evenement['evenements_place_dispo']); ?></td>
+                        <td><?php print_r($evenement['evenements_capacite']); ?> places</td>
                         <td>
                             <a type="button" class="btn btn-primary"  href=<?php print_r("../controleur/FrontControleur.php?action=toModifEvent&id_event=".$evenement['id'])?>>
                                 Modifier
                             </a>
-                            <button  type="button" id=<?php print_r($evenement['id']); ?> class="btn btn-danger" onclick="getSupprEvent(this.id)" data-toggle="modal" data-target="#popup-eventSuppr">
+                            <button  type="button" class="btn btn-danger" onclick="getSupprEvent(<?php print_r($evenement['id']); ?>)" data-toggle="modal" data-target="#popup-eventSuppr">
                                 Supprimer
                             </button>
                     </tr>

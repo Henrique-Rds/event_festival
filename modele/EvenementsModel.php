@@ -16,7 +16,7 @@ class EvenementsModel extends Model{
 
     public function createEvenement($nom,$date,$duree,$lieu,$placeDispo) {
         $sql = "INSERT INTO ".$this->table."
-        (id, evenements_nom , evenements_date , evenements_duree, lieu, evenements_place_dispo)
+        (id, evenements_nom , evenements_date , evenements_duree, lieu, evenements_capacite)
         VALUES (NULL,? , ? , ?, ?, ?)" ;
         $query = $this->connection->prepare($sql);
         try{
@@ -30,7 +30,7 @@ class EvenementsModel extends Model{
     public function updateEvenement($nom,$date,$duree,$lieu,$placeDispo,$id) {
         $sql = "UPDATE ".$this->table."
         SET evenements_nom = ? , evenements_date= ? ,
-        evenements_duree = ?, lieu = ? , evenements_place_dispo = ?
+        evenements_duree = ?, lieu = ? , evenements_capacite = ?
         WHERE id = ? "; 
         $query = $this->connection->prepare($sql);
         try{

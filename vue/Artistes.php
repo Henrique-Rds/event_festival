@@ -29,7 +29,7 @@
         <tbody>
             <?php
                     // On rempli notre tableau
-                    foreach ($_SESSION["Artistes"] as $artistes) {
+                    foreach (unserialize($_GET["donnes_artiste"]) as $artistes) {
                         ?>
                         <tr>
                             <!-- On affiche le nom et le nombre de musique des artistes -->
@@ -39,7 +39,7 @@
                                 <!-- On envoie au FrontControleur avec l'id sur le case toModifArtiste -->
                                 <a class="btn btn-primary" href=<?php print_r("../controleur/FrontControleur.php?action=toModifArtiste&id_artiste=".$artistes['id'])?>>Modifier</a>
                                 <!-- On attribue à l'id du bouton l'id artiste en bdd et on le récup avec la fonction dans le onclick -->
-                                <button type="button" id=<?php print_r($artistes['id']);?> class="btn btn-danger" onclick="getSupprArtiste(this.id)" data-toggle="modal" data-target="#popup-event-delete">Supprimer</button>
+                                <button type="button"  class="btn btn-danger" onclick="getSupprArtiste(<?php print_r($artistes['id']);?>)" data-toggle="modal" data-target="#popup-event-delete">Supprimer</button>
                             </td>
                         </tr>
                         <?php

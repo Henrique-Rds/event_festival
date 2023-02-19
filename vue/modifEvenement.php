@@ -17,14 +17,14 @@
 
   <body>
     <?php 
-    $dt = new DateTime($_SESSION['OneEvent']['evenements_date']);
+    $dt = new DateTime(unserialize($_GET['donnes_evenement'])['evenements_date']);
     ?>
     <h1>Modifier l'Evenement</h1>
     <form class="row g-3" action="../controleur/FrontControleur.php?action=modifEvent" method="POST">
-        <input type="hidden" name="id_event" id="id_event" value=<?php  print_r($_SESSION['OneEvent']['id']) ?>>
+        <input type="hidden" name="id_event" id="id_event" value=<?php  print_r(unserialize($_GET['donnes_evenement'])['id']) ?>>
         <div class="col-12">
             <label for="nom_event" class="form-label">Nom de l'évènement</label>
-            <input type="text"  maxlength="50" value=<?php  print_r($_SESSION['OneEvent']['evenements_nom']) ?> maxlength="50" class="form-control" id="nom_event" name="nom_event">
+            <input type="text"  maxlength="50" value=<?php  print_r(unserialize($_GET['donnes_evenement'])['evenements_nom']) ?> maxlength="50" class="form-control" id="nom_event" name="nom_event">
         </div>
         <div class="col-12">
             <!-- utilisation de la fonction php format de la classe DateTime pour formater la date et l'heure de l'évènement -->
@@ -34,15 +34,15 @@
         <div class="col-12">
             <!-- utilisation du type car le type number ignore le maxlength -->
             <label for="duree_event" class="form-label">Duree de l'évènement</label>
-            <input type="tel"  maxlength="9" value=<?php  print_r($_SESSION['OneEvent']['evenements_duree']) ?> maxlength="11" class="form-control" id="duree_event" name="duree_event">
+            <input type="tel"  maxlength="9" value=<?php  print_r(unserialize($_GET['donnes_evenement'])['evenements_duree']) ?> maxlength="11" class="form-control" id="duree_event" name="duree_event">
         </div>
         <div class="col-12">
             <label for="lieu_event" class="form-label">Lieu de l'évènement</label>
-            <input type="text" maxlength="250" value=<?php  print_r($_SESSION['OneEvent']['lieu']) ?>  maxlength="250" class="form-control" id="lieu_event" name="lieu_event">
+            <input type="text" maxlength="250" value=<?php  print_r(unserialize($_GET['donnes_evenement'])['lieu']) ?>  maxlength="250" class="form-control" id="lieu_event" name="lieu_event">
         </div>
         <div class="col-12">
             <label for="nb_places" class="form-label">Nombre de places de l'évènement</label>
-            <input type="tel" maxlength="9" value=<?php  print_r($_SESSION['OneEvent']['evenements_place_dispo']) ?> maxlength="11" class="form-control" id="nb_places" name="nb_places">
+            <input type="tel" maxlength="9" value=<?php  print_r(unserialize($_GET['donnes_evenement'])['evenements_place_dispo']) ?> maxlength="11" class="form-control" id="nb_places" name="nb_places">
         </div>
 
         <div class="btn-form">

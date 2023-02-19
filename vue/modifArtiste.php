@@ -20,17 +20,17 @@
     <h1>Modifier l'artiste</h1>
     <form class="row g-3" action="../controleur/FrontControleur.php?action=modifArtiste" method="POST">
       <!-- On stocke l'id dans une variable cachée -->
-      <input type="hidden" name="id_artiste" id="id_artiste" value=<?php  print_r($_SESSION['OneArtiste']['id']) ?>>
+      <input type="hidden" name="id_artiste" id="id_artiste" value=<?php  print_r(unserialize($_GET['donnes_artiste'])['id']) ?>>
         <div class="col-12">
             <label for="nom_artiste" class="form-label">Nom de l'artiste</label>
             <!-- On attribue a la value le nom actuel dans la bdd (on le stocke dans une variable de session) -->
-            <input type="text" class="form-control" id="nom_artiste" name="nom_artiste" value=<?php  print_r($_SESSION['OneArtiste']['artiste_nom']) ?> maxlength="50">
+            <input type="text" class="form-control" id="nom_artiste" name="nom_artiste" value=<?php  print_r(unserialize($_GET['donnes_artiste'])['artiste_nom']) ?> maxlength="50">
         </div>
         <div class="col-12">
             <label for="nb_musiques" class="form-label">Nombre de musiques</label>
             <!-- On attribue a la value le nombre de musiques actuel dans la bdd (on le stocke dans une variable de session) -->
             <!-- utilisation du type car le type number ignore le maxlength -->
-            <input type="tel" class="form-control" id="nb_musiques" name="nb_musiques" value=<?php  print_r($_SESSION['OneArtiste']['artiste_nb_musique']) ?> maxlength="9">
+            <input type="tel" class="form-control" id="nb_musiques" name="nb_musiques" value=<?php  print_r(unserialize($_GET['donnes_artiste'])['artiste_nb_musique']) ?> maxlength="9">
         </div>
 
         <div class="btn-form">
